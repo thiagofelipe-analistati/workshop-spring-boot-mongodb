@@ -38,5 +38,16 @@ public class UsuarioService {
 	public Usuario fromDTO(UsuarioDto objDto) {
 		return new Usuario(objDto.getId(), objDto.getEmail(), objDto.getNome() );
 	}
+	public Usuario update(Usuario obj) {
+		Usuario newObj = findById(obj.getId());
+		updateData(newObj, obj);
+		return repository.save(newObj);
+	}
+
+	private void updateData(Usuario newObj, Usuario obj) {
+		newObj.setNome(obj.getNome());
+		newObj.setEmail(obj.getEmail());
+		
+	}
 	
 }
