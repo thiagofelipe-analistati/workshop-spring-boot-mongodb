@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.thiagofelipe.workshopmongo.dominio.Post;
 import com.thiagofelipe.workshopmongo.dominio.Usuario;
+import com.thiagofelipe.workshopmongo.dto.AutorDTO;
 import com.thiagofelipe.workshopmongo.repository.PostRepository;
 import com.thiagofelipe.workshopmongo.repository.UsuarioRepository;
 
@@ -31,12 +32,12 @@ public class Intaciacao implements CommandLineRunner{
 		Usuario maria = new Usuario(null, "Maria Brown", "maria@gmail.com");
 		Usuario alex = new Usuario(null, "Alex Green", "alex@gmail.com");
 		Usuario bob = new Usuario(null, "Bob Grey", "bob@gmail.com");
-		
-		Post post = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", maria);
-		
-		Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acordei feliz hoje!", maria);
-		
+
 		UsuarioRepository.saveAll(Arrays.asList(maria, alex, bob));
+		Post post = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", new AutorDTO(maria));
+		
+		Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acordei feliz hoje!", new AutorDTO(maria));
+		
 		PostRepository.saveAll(Arrays.asList(post, post2));
 	}
 
