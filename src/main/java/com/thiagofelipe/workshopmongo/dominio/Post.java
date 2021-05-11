@@ -7,7 +7,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.thiagofelipe.workshopmongo.dto.AutorDTO;
-import com.thiagofelipe.workshopmongo.dto.UsuarioDto;
 
 
 @Document
