@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import com.thiagofelipe.workshopmongo.dominio.Post;
 import com.thiagofelipe.workshopmongo.dominio.Usuario;
 import com.thiagofelipe.workshopmongo.dto.AutorDTO;
+import com.thiagofelipe.workshopmongo.dto.ComentarioDTO;
 import com.thiagofelipe.workshopmongo.repository.PostRepository;
 import com.thiagofelipe.workshopmongo.repository.UsuarioRepository;
 
@@ -38,8 +39,14 @@ public class Intaciacao implements CommandLineRunner{
 		
 		Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acordei feliz hoje!", new AutorDTO(maria));
 		
-		PostRepository.saveAll(Arrays.asList(post, post2));
+		ComentarioDTO c1 = new ComentarioDTO("Boa viagem mano", sdf.parse("21/03/2018"), new AutorDTO(alex));
+		ComentarioDTO c2 = new ComentarioDTO("aproveite", sdf.parse("22/03/2018"), new AutorDTO(bob));
+		ComentarioDTO c3 = new ComentarioDTO("Tenha uma otima viagem", sdf.parse("23/03/2018"), new AutorDTO(alex));
 		
+		
+		post.getComentarios().addAll(Arrays.asList(c1,c2));
+		post2.getComentarios().add(c3);
+		PostRepository.saveAll(Arrays.asList(post, post2));
 		maria.getPosts().addAll(Arrays.asList(post, post2));
 		UsuarioRepository.save(maria);
 	}
